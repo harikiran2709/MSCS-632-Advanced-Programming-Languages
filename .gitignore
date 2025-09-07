@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# C++
+*.o
+*.out
+cpp_mem
+*.dSYM/
+
+# Java
+*.class
+
+# Rust
+rust_mem
+target/
+*.rlib
