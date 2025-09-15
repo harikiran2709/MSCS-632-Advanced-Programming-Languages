@@ -71,6 +71,15 @@ class TodoService {
         };
         console.log('Saving to JSON:', JSON.stringify(data, null, 2));
     }
+    
+    // JSON storage for filtered data
+    async saveFilteredToJSON(filteredTasks, filteredUsers = null) {
+        const data = {
+            users: filteredUsers ? Array.from(filteredUsers.values()) : Array.from(this.users.values()),
+            tasks: filteredTasks
+        };
+        console.log('Saving to JSON:', JSON.stringify(data, null, 2));
+    }
 }
 
 // Interactive application
@@ -218,7 +227,11 @@ class TodoApp {
                 const allTasks = this.service.getAllTasks();
                 console.log('\nAll tasks:');
                 allTasks.forEach(task => 
-                    console.log(`- ${task.title} (${task.category}) - ${task.status}`));
+                    console.log(`${task.title} - ${task.status}`));
+                
+                // Show JSON format (JavaScript language-specific feature)
+                console.log('\nJSON Data:');
+                await this.service.saveToJSON();
                 break;
             case '2':
                 const username = await this.getInput('Enter username (alice/bob): ');
@@ -226,7 +239,14 @@ class TodoApp {
                     const userTasks = this.service.getTasksByUser(this.currentUsers.get(username).id);
                     console.log(`\nTasks for ${username}:`);
                     userTasks.forEach(task => 
-                        console.log(`- ${task.title} - ${task.status}`));
+                        console.log(`${task.title} - ${task.status}`));
+                    
+                    // Show JSON format (JavaScript language-specific feature) - only for this user
+                    console.log('\nJSON Data:');
+                    const user = this.currentUsers.get(username);
+                    const userMap = new Map();
+                    userMap.set(user.id, user);
+                    await this.service.saveFilteredToJSON(userTasks, userMap);
                 } else {
                     console.log('User not found!');
                 }
@@ -236,7 +256,11 @@ class TodoApp {
                 const categoryTasks = this.service.getTasksByCategory(category);
                 console.log(`\nTasks in ${category} category:`);
                 categoryTasks.forEach(task => 
-                    console.log(`- ${task.title} - ${task.status}`));
+                    console.log(`${task.title} - ${task.status}`));
+                
+                // Show JSON format (JavaScript language-specific feature) - only for this category
+                console.log('\nJSON Data:');
+                await this.service.saveFilteredToJSON(categoryTasks);
                 break;
         }
     }

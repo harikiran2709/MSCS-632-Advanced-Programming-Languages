@@ -85,6 +85,10 @@ class TodoService {
     public List<Task> getAllTasks() {
         return new ArrayList<>(tasks.values());
     }
+    
+    public User getUserById(String userId) {
+        return users.get(userId);
+    }
 }
 
 public class TodoApp {
@@ -226,8 +230,10 @@ public class TodoApp {
             case 1:
                 List<Task> allTasks = service.getAllTasks();
                 System.out.println("\nAll tasks:");
-                allTasks.forEach(task -> 
-                    System.out.println("- " + task.getTitle() + " (" + task.getCategory() + ") - " + task.getStatus()));
+                allTasks.forEach(task -> {
+                    String assignedUser = service.getUserById(task.getAssignedUserId()).getName();
+                    System.out.println("- " + task.getTitle() + " (" + task.getCategory() + ") - " + task.getStatus() + " - Assigned to: " + assignedUser);
+                });
                 break;
             case 2:
                 String username = getStringInput("Enter username (alice/bob): ");
@@ -244,8 +250,10 @@ public class TodoApp {
                 String category = getStringInput("Enter category (Work/Personal): ");
                 List<Task> categoryTasks = service.getTasksByCategory(category);
                 System.out.println("\nTasks in " + category + " category:");
-                categoryTasks.forEach(task -> 
-                    System.out.println("- " + task.getTitle() + " - " + task.getStatus()));
+                categoryTasks.forEach(task -> {
+                    String assignedUser = service.getUserById(task.getAssignedUserId()).getName();
+                    System.out.println("- " + task.getTitle() + " - " + task.getStatus() + " - Assigned to: " + assignedUser);
+                });
                 break;
         }
     }
