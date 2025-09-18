@@ -80,6 +80,22 @@ class TodoService {
         };
         console.log('Saving to JSON:', JSON.stringify(data, null, 2));
     }
+    
+    // Get JSON data for readable display
+    async getJSONData() {
+        return {
+            users: Array.from(this.users.values()),
+            tasks: Array.from(this.tasks.values())
+        };
+    }
+    
+    // Get filtered JSON data for readable display
+    async getFilteredJSONData(filteredTasks, filteredUsers = null) {
+        return {
+            users: filteredUsers ? Array.from(filteredUsers.values()) : Array.from(this.users.values()),
+            tasks: filteredTasks
+        };
+    }
 }
 
 // Interactive application
@@ -230,8 +246,9 @@ class TodoApp {
                     console.log(`${task.title} - ${task.status}`));
                 
                 // Show JSON format (JavaScript language-specific feature)
-                console.log('\nJSON Data:');
-                await this.service.saveToJSON();
+                console.log('\nJSON Data (for storage):');
+                const jsonData = await this.service.getJSONData();
+                console.log(JSON.stringify(jsonData, null, 2));
                 break;
             case '2':
                 const username = await this.getInput('Enter username (alice/bob): ');
@@ -242,11 +259,12 @@ class TodoApp {
                         console.log(`${task.title} - ${task.status}`));
                     
                     // Show JSON format (JavaScript language-specific feature) - only for this user
-                    console.log('\nJSON Data:');
+                    console.log('\nJSON Data (for storage):');
                     const user = this.currentUsers.get(username);
                     const userMap = new Map();
                     userMap.set(user.id, user);
-                    await this.service.saveFilteredToJSON(userTasks, userMap);
+                    const filteredJsonData = await this.service.getFilteredJSONData(userTasks, userMap);
+                    console.log(JSON.stringify(filteredJsonData, null, 2));
                 } else {
                     console.log('User not found!');
                 }
@@ -259,8 +277,9 @@ class TodoApp {
                     console.log(`${task.title} - ${task.status}`));
                 
                 // Show JSON format (JavaScript language-specific feature) - only for this category
-                console.log('\nJSON Data:');
-                await this.service.saveFilteredToJSON(categoryTasks);
+                console.log('\nJSON Data (for storage):');
+                const categoryJsonData = await this.service.getFilteredJSONData(categoryTasks);
+                console.log(JSON.stringify(categoryJsonData, null, 2));
                 break;
         }
     }
@@ -342,8 +361,10 @@ class TodoApp {
         this.service.getTasksByCategory('Work').forEach(task => 
             console.log(`${task.title} - ${task.status}`));
         
-        // Demonstrate JSON storage
-        await this.service.saveToJSON();
+        // Demonstrate JSON storage (readable format)
+        console.log('\nJSON Data (for storage):');
+        const jsonData = await this.service.getJSONData();
+        console.log(JSON.stringify(jsonData, null, 2));
     }
     
     getInput(prompt) {
