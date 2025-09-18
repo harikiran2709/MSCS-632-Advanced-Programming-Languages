@@ -1,0 +1,22 @@
+# Test Data: Alternative Scenario (6 employees - shows partial success)
+# Use this data when running the interactive Java/Python programs
+
+# For Java: Enter these numbers when prompted
+# 6 (number of employees)
+# Then enter employee names: Alice, Bob, Charlie, David, Eve, Frank
+# Then for each employee, enter preferences (1=Morning, 2=Afternoon, 3=Evening, 0=None):
+# Alice: 1,2,3,0,0,0,0
+# Bob: 2,3,1,0,0,0,0
+# Charlie: 3,1,2,0,0,0,0
+# David: 1,2,3,0,0,0,0
+# Eve: 2,3,1,0,0,0,0
+# Frank: 3,1,2,0,0,0,0
+
+# For Python: Enter these when prompted
+# 6 (number of employees)
+# Then enter employee names: Alice, Bob, Charlie, David, Eve, Frank
+# Then enter preferences: Alice, Monday, Morning, Bob, Monday, Afternoon, etc.
+
+# Expected Result: Should work for some days but show warnings for others
+# Available: 6 employees × 5 days max = 30 employee-shifts
+# Minimum needed: 2 employees per shift × 3 shifts × 7 days = 42 employee-shifts

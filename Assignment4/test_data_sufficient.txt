@@ -1,0 +1,23 @@
+# Test Data: Sufficient Employees (9 employees - meets all requirements)
+# Use this data when running the interactive Java/Python programs
+
+# For Java: Enter these numbers when prompted
+# 9 (number of employees)
+# Then enter employee names: Alice, Bob, Charlie, David, Eve, Frank, Grace, Henry, Ivy
+# Then for each employee, enter preferences (1=Morning, 2=Afternoon, 3=Evening, 0=None):
+# Alice: 1,2,3,1,2,3,1 (Monday Morning, Tuesday Afternoon, Wednesday Evening, Thursday Morning, Friday Afternoon, Saturday Evening, Sunday Morning)
+# Bob: 2,3,1,2,3,1,2 (Monday Afternoon, Tuesday Evening, Wednesday Morning, Thursday Afternoon, Friday Evening, Saturday Morning, Sunday Afternoon)
+# Charlie: 3,1,2,3,1,2,3 (Monday Evening, Tuesday Morning, Wednesday Afternoon, Thursday Evening, Friday Morning, Saturday Afternoon, Sunday Evening)
+# David: 1,2,3,1,2,3,1
+# Eve: 2,3,1,2,3,1,2
+# Frank: 3,1,2,3,1,2,3
+# Grace: 1,2,3,1,2,3,1
+# Henry: 2,3,1,2,3,1,2
+# Ivy: 3,1,2,3,1,2,3
+
+# For Python: Enter these when prompted
+# 9 (number of employees)
+# Then enter employee names: Alice, Bob, Charlie, David, Eve, Frank, Grace, Henry, Ivy
+# Then enter preferences: Alice, Monday, Morning, Bob, Monday, Afternoon, etc.
+
+# Expected Result: Should work perfectly, all shifts filled with 2+ employees
