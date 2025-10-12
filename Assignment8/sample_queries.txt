@@ -1,0 +1,154 @@
+% Sample Queries for Family Tree Program
+% Run these queries in Prolog after loading family_tree.pl
+
+% ===========================================
+% BASIC RELATIONSHIP QUERIES
+% ===========================================
+
+% 1. Who are the children of john?
+% Query: children(john, Children).
+% Expected Output: Children = [mary, tom]
+
+% 2. Who are the children of jane?
+% Query: children(jane, Children).
+% Expected Output: Children = [mary, tom]
+
+% 3. Who are the children of mary?
+% Query: children(mary, Children).
+% Expected Output: Children = [alice, bob]
+
+% ===========================================
+% SIBLING QUERIES
+% ===========================================
+
+% 4. Who are the siblings of mary?
+% Query: siblings(mary, Siblings).
+% Expected Output: Siblings = [tom]
+
+% 5. Who are the siblings of tom?
+% Query: siblings(tom, Siblings).
+% Expected Output: Siblings = [mary]
+
+% 6. Who are the siblings of alice?
+% Query: siblings(alice, Siblings).
+% Expected Output: Siblings = [bob]
+
+% 7. Is mary a sibling of tom?
+% Query: sibling(mary, tom).
+% Expected Output: true
+
+% 8. Is alice a sibling of charlie?
+% Query: sibling(alice, charlie).
+% Expected Output: false
+
+% ===========================================
+% GRANDPARENT QUERIES
+% ===========================================
+
+% 9. Who are the grandparents of alice?
+% Query: grandparent(Grandparent, alice).
+% Expected Output: Grandparent = john ; Grandparent = jane
+
+% 10. Who are the grandparents of charlie?
+% Query: grandparent(Grandparent, charlie).
+% Expected Output: Grandparent = john ; Grandparent = jane
+
+% 11. Is john a grandparent of alice?
+% Query: grandparent(john, alice).
+% Expected Output: true
+
+% 12. Is jane a grandparent of charlie?
+% Query: grandparent(jane, charlie).
+% Expected Output: true
+
+% ===========================================
+% COUSIN QUERIES
+% ===========================================
+
+% 13. Who are the cousins of alice?
+% Query: cousin(alice, Cousin).
+% Expected Output: Cousin = charlie ; Cousin = diana
+
+% 14. Who are the cousins of charlie?
+% Query: cousin(charlie, Cousin).
+% Expected Output: Cousin = alice ; Cousin = bob
+
+% 15. Is alice a cousin of charlie?
+% Query: cousin(alice, charlie).
+% Expected Output: true
+
+% 16. Is alice a cousin of bob?
+% Query: cousin(alice, bob).
+% Expected Output: false (they are siblings, not cousins)
+
+% ===========================================
+% RECURSIVE QUERIES (ANCESTORS/DESCENDANTS)
+% ===========================================
+
+% 17. Who are all the ancestors of eve?
+% Query: ancestors(eve, Ancestors).
+% Expected Output: Ancestors = [alice, mary, john, jane]
+
+% 18. Who are all the descendants of john?
+% Query: descendants(john, Descendants).
+% Expected Output: Descendants = [mary, tom, alice, bob, charlie, diana, eve, frank, grace, henry]
+
+% 19. Is john an ancestor of eve?
+% Query: ancestor(john, eve).
+% Expected Output: true
+
+% 20. Is eve a descendant of jane?
+% Query: descendant(eve, jane).
+% Expected Output: true
+
+% ===========================================
+% ADDITIONAL RELATIONSHIP QUERIES
+% ===========================================
+
+% 21. Who is the father of mary?
+% Query: father(Father, mary).
+% Expected Output: Father = john
+
+% 22. Who is the mother of tom?
+% Query: mother(Mother, tom).
+% Expected Output: Mother = jane
+
+% 23. Who are the uncles of alice?
+% Query: uncle(Uncle, alice).
+% Expected Output: Uncle = tom
+
+% 24. Who are the aunts of charlie?
+% Query: aunt(Aunt, charlie).
+% Expected Output: Aunt = mary
+
+% ===========================================
+% GENDER-BASED QUERIES
+% ===========================================
+
+% 25. List all males in the family
+% Query: male(X).
+% Expected Output: X = john ; X = tom ; X = bob ; X = charlie ; X = frank ; X = henry
+
+% 26. List all females in the family
+% Query: female(X).
+% Expected Output: X = jane ; X = mary ; X = alice ; X = diana ; X = eve ; X = grace
+
+% ===========================================
+% COMPLEX QUERIES
+% ===========================================
+
+% 27. Find all people who have both parents defined
+% Query: parent(P1, X), parent(P2, X), P1 \= P2.
+% Expected Output: Multiple solutions showing people with both parents
+
+% 28. Find all people who are both parents and children
+% Query: parent(X, Y), parent(Z, X).
+% Expected Output: Multiple solutions showing people who are both parents and children
+
+% 29. Find all grandparents who are male
+% Query: grandparent(X, Y), male(X).
+% Expected Output: X = john (multiple times for different grandchildren)
+
+% 30. Find all cousins who are female
+% Query: cousin(X, Y), female(X).
+% Expected Output: Multiple solutions showing female cousins
