@@ -4,11 +4,12 @@
 # VS Code
 .vscode/
 
-# C++
+# C/C++
 *.o
 *.out
 cpp_mem
 *.dSYM/
+statistics
 
 # Java
 *.class
@@ -30,3 +31,11 @@ __pycache__/
 *.pyo
 *.pyd
 .Python
+
+# OCaml
+*.cmi
+*.cmo
+*.cma
+*.cmx
+*.cmxa
+statistics_ocaml
